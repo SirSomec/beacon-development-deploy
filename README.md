@@ -1,8 +1,33 @@
-# Beacon development deployment
+# Beacon — окружение разработки
 
-This repository contains deployment instructions and compiled public game
-artifacts for the development environment. The game's source code, signing
-keys and database credentials are not published here.
+Публичный адрес: https://beacon-game-production.up.railway.app
 
-The service is being prepared. The first playable release will replace the
-temporary preparation page.
+Этот репозиторий содержит только описание поставки. Серверные исходники,
+ключи подписи и пароли базы сюда не добавляются. Клиентские APK/PCK,
+сайт, контент и собранный сервер находятся в отдельном Release-архиве.
+Ресурсы установленного клиента доступны его пользователю.
+
+Dockerfile скачивает фиксированный `runtime.tar.gz`, проверяет SHA-256
+и запускает непривилегированный Go/Caddy runtime. Внешний HTTPS/WSS
+предоставляет Railway; данные игроков находятся в отдельной Neon PostgreSQL.
+
+Текущий кандидат: `development-20261002-5`, протокол v4, Android package
+`com.newproject.beacon`. Подписанные метаданные обновлений и проверка хешей
+входят в клиент. PCK обновляется внутри игры; для нового APK требуется
+системное подтверждение Android. Это пилот вне магазинов.
+
+В runtime необходимо передать `PORT=10000` и секрет `DATABASE_URL`:
+прямой PostgreSQL endpoint без transaction pooler, `sslmode=verify-full`,
+`pool_max_conns=8`. Healthcheck: `/readyz`; один экземпляр; graceful draining:
+30 секунд. Пароли передаются только через секреты хостинга.
+
+Для обновления сначала остановить прежний deployment, дождаться освобождения
+блокировки игрового мира, сохранить резервную копию БД и запустить новый
+кандидат. Одновременный запуск двух владельцев мира запрещён.
+
+Railway запущен без карты: Trial ограничен 30 днями или $5, затем Free даёт
+$1 в месяц. Neon Free тоже имеет квоты. Постоянная круглосуточная работа
+на бесплатном бюджете не гарантируется; платная подписка не включена.
+
+Факт приёмки конкретного deployment фиксируется отдельно после проверки
+HTTPS/WSS, APK/PCK и базы. Сам подготовленный архив не подтверждает выкладку.
