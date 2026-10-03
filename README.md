@@ -2,62 +2,51 @@
 
 Публичный адрес: https://beacon-game-production.up.railway.app
 
-Этот репозиторий содержит только описание поставки. Серверные исходники,
-ключи подписи и пароли базы сюда не добавляются. Клиентские APK/PCK,
-сайт, контент и собранный сервер находятся в отдельном Release-архиве.
-Ресурсы установленного клиента доступны его пользователю.
+Принят `development-20261003-8`, sequence8/minimumAPK5, 2026-10-03T06:18:51.178752+00:00.
+Включён актуальный размер героя, монстров и NPC, подписи, касание и камера.
+Сервер/контент/миграции/сайт byte-exact7; завершённая итерация размера акторов
+зафиксирована в подписанном APK/PCK8. Начатая после заморозки параллельная
+разработка мини-карты не включена в8; текущее рабочее дерево отличается от
+его неизменяемого снимка. Идентичность `com.newproject.beacon`,
+engine4.6.2/bootstrap1/protocol4, HTTPS/WSS origin и ключи сохранены.
 
-Dockerfile скачивает фиксированный `runtime.tar.gz`, проверяет SHA-256
-и запускает непривилегированный Go/Caddy runtime. Внешний HTTPS/WSS
-предоставляет Railway; данные игроков находятся в отдельной Neon PostgreSQL.
+Репозиторий содержит только Dockerfile/README. SHA-проверенный immutable
+runtime.tar.gz содержит собранные Go/Caddy, сайт, игровые данные и клиентские
+APK/PCK. Серверные исходники, private keys, пароли и данные игроков сюда не
+добавляются. Runtime работает UID10001/GID1000; внешний TLS/WSS предоставляет
+Railway, постоянная БД — Neon PostgreSQL.
 
-Состав этой поставки: `development-20261003-7`, sequence7, minimum APK5,
-протокол v4, Android package
-`com.newproject.beacon`. Подписанные метаданные обновлений и проверка хешей
-входят в клиент. Включены новые анимации девяти локаций и исправление
-пустого инвентаря сервера. PCK обновляется внутри игры; для нового APK требуется
-системное подтверждение Android. Это пилот вне магазинов.
+Настройки: PORT10000, DATABASE_URL в provider secrets (direct endpoint,
+sslmode=verify-full,pool_max_conns=8), healthcheck/readyz, один экземпляр,
+drain30s. До обновления сохранить приватный backup и проверить restore,
+закрыть snapshot; остановить точный старый deployment и подтвердить
+REMOVED/ready404/noactive. Затем explicit railway up из pinnedclean каталога,
+без позиционного пути. Два world owners и слепой redeploy запрещены.
 
-В runtime необходимо передать `PORT=10000` и секрет `DATABASE_URL`:
-прямой PostgreSQL endpoint без transaction pooler, `sslmode=verify-full`,
-`pool_max_conns=8`. Healthcheck: `/readyz`; один экземпляр; graceful draining:
-30 секунд. Пароли передаются только через секреты хостинга.
+Actual8: deployment 38fd2083-b0c5-48ed-a82f-79a877e4f5ba
+SUCCESS/ready200, source1333/snapshot818/packed817, package9181,
+ownPG18 runtime79 (33wire included), public508, progress7→8 70/39/24fields.
+AndroidAPI35/x86_64/16KB: installedAPK7 автоматически получил signedPCK8;
+freshAPK8 запущен с bundled8 без ещё одного PCK GET. World/hero/NPC/equipment/
+backpack и script/runtime errors0 проверены. Browser1152/390/320 и own QA
+account/auth/AVD/containers cleanup подтверждены. Три временно отключавшихся
+фоновых приложения своего AVD включены и проверены; исходно наблюдалось
+disabled-user, поэтому восстановление исходного состояния не заявляется.
+Ledger атомарно продвинут7→8 после независимых reviews.
 
-Для обновления сначала подготовить и проверить пакет, сохранить резервную
-копию БД и закрыть экспортный snapshot. Затем остановить прежний deployment,
-дождаться освобождения блокировки игрового мира и запустить новый
-кандидат. Одновременный запуск двух владельцев мира запрещён.
-После остановки использовать явный `railway up` из проверенного каталога
-поставки, без позиционного `.`. Слепой `railway redeploy` после удаления
-может выбрать старую неудачную тестовую поставку.
+[Итоговые hashes, gates и ограничения](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-8/accepted-release8.json).
+[Предыдущая принятая7](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-7/accepted-release7.json).
 
-Для следующих обновлений сохранить этот HTTPS origin, существующие RSA
-и Android signing keys, package identity и приватный release ledger.
-Следующий sequence и versionCode нового APK должны быть выше принятого 7.
-После принятой7 откат сервера сохраняет подписанные metadata и APK/PCK7
-либо использует следующий sequence. Старый образ6 целиком не возвращается.
+Подписанный client8 уже мог быть получен пользователями: возврат к whole
+runtime7 запрещён. Сохранять metadata/URLs/APK/PCK8 в совместимом server
+runtime либо выпускать sequence9+. Native engine/plugin/bootstrap изменения
+потребуют отдельного APK update с системным подтверждением Android; игровые
+изменения совместимого PCK загружаются внутри игры.
 
-Railway запущен без карты: Trial ограничен 30 днями или $5, затем Free даёт
-$1 в месяц. Neon Free тоже имеет квоты. Постоянная круглосуточная работа
-на бесплатном бюджете не гарантируется; платная подписка не включена.
-
-Приёмка7 завершена 2026-10-03. Один Railway deployment
-`f9376eb1-f2f6-40ed-b078-297d7c985190` SUCCESS/ready200;
-source1332/client816 stable,815 packed resources, package9175 и ownPG18
-runtime74 PASS. PublicHTTPS/WSS510 и saved progress6→7 74/38 (24fields) PASS.
-AndroidAPI35/x86_64/16KiB: прежний APK5 сам скачал signedPCK7 без
-переустановки; freshAPK7 запустился из bundled7 без нового PCK GET.
-В обеих фазах login/world/equipment/backpack PASS, script/runtime errors0.
-Browser1152/390/320 проверен; own backend QA/auth/AVD/containers очищены.
-Private ledger продвинут5→7 после независимых reviews.
-[Итоговые hashes, scoped checks и ограничения](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-7/accepted-release7.json).
-
-Доказательства исторической UI ошибки6 и ранних interrupted Android7
-попыток сохраняются. Физический Android/ARM64/iOS/store, длительная
-нагрузка и автоматическое расписание backup не приняты этой проверкой.
-
-Подготовленные metadata в Release-архиве остаются неизменяемыми и отражают
-состояние до выкладки. Итоговые доказательства deployment сохранены отдельно.
-
-Кандидат обновления: `development-20261003-8`, sequence8/minimumAPK5, актуальный размер акторов.
-Подготовлен и проверен; фактическая публичная приёмка8 фиксируется отдельно.
+Бесплатный Railway Trial ограничен30days/$5, затем Free$1/month; Neon имеет
+квоты. Карта и платный тариф не включены, круглосуточная работа без квот не
+обещана. PhysicalAndroid/ARM64/iOS/store/длительнаянагрузка и backup automation
+не приняты. Известный UI baselineFAIL6/595 и исторические interrupted7
+attempts сохраняются; этот sideload pilot не объявлен магазинным релизом.
+Prepared metadata неизменяемы и остаются candidate до-выкладки; фактическая
+приёмка опубликована отдельно.
