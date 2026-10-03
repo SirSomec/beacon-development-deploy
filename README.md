@@ -2,54 +2,41 @@
 
 Публичный адрес: https://beacon-game-production.up.railway.app
 
-Принят `development-20261003-8`, sequence8/minimumAPK5, 2026-10-03T06:18:51.178752+00:00.
-Включён актуальный размер героя, монстров и NPC, подписи, касание и камера.
-Сервер/контент/миграции/сайт byte-exact7; завершённая итерация размера акторов
-зафиксирована в подписанном APK/PCK8. Начатая после заморозки параллельная
-разработка мини-карты не включена в8; текущее рабочее дерево отличается от
-его неизменяемого снимка. Идентичность `com.newproject.beacon`,
-engine4.6.2/bootstrap1/protocol4, HTTPS/WSS origin и ключи сохранены.
+Принят `development-20261003-9`, sequence9/minimumAPK5, 2026-10-03T11:18:17.264488+00:00.
+Включены мини-карта и подробная карта с zoom/pan/точками; все завершённые
+изменения после8 включены. Source1337/snapshot826/packed825/Main8afb совпадают
+со снимком и текущими исходниками. Server/content/migrations/site byte-exact8.
+Android package/cert, RSA, Godot4.6.2/bootstrap1/protocol4 и origin сохранены.
 
-Репозиторий содержит только Dockerfile/README. SHA-проверенный immutable
-runtime.tar.gz содержит собранные Go/Caddy, сайт, игровые данные и клиентские
-APK/PCK. Серверные исходники, private keys, пароли и данные игроков сюда не
-добавляются. Runtime работает UID10001/GID1000; внешний TLS/WSS предоставляет
-Railway, постоянная БД — Neon PostgreSQL.
+Репозиторий содержит только Dockerfile/README. Immutable SHA-pinned runtime
+содержит собранные Go/Caddy, сайт/данные и APK/PCK. Private keys/passwords/данные
+игроков и серверные исходники в репозиторий не добавляются. UID10001/GID1000;
+Railway TLS/WSS, Neon PG18 direct endpoint/verify-full/pool8; PORT10000,
+healthcheck/readyz, один экземпляр, drain30s. До deploy: fresh private backup,
+isolated restore, export snapshot closed, exactlatestold owner removed,
+REMOVED/ready404/noactive; затем explicit railway up из pinnedclean каталога
+без позиционного пути. Два world owners и blind redeploy запрещены.
 
-Настройки: PORT10000, DATABASE_URL в provider secrets (direct endpoint,
-sslmode=verify-full,pool_max_conns=8), healthcheck/readyz, один экземпляр,
-drain30s. До обновления сохранить приватный backup и проверить restore,
-закрыть snapshot; остановить точный старый deployment и подтвердить
-REMOVED/ready404/noactive. Затем explicit railway up из pinnedclean каталога,
-без позиционного пути. Два world owners и слепой redeploy запрещены.
+Actual9: deployment `fd928062-4bea-476a-aaa5-20c55251641c` SUCCESS/ready200.
+Package9187, ownPG18 runtime80 (33wire included),
+public510, progress8→9 80/36/24fields.
+API35/x86_64/16KB: installedAPK8 автоматически получил signedPCK9; freshAPK9
+использует bundled9 без дополнительного PCK GET. Login/world/equipment/backpack
+и map gestures/Back/неподвижность героя проверены, script/runtime errors0.
+Browser1152/390/320, backup restore27/4, own accounts/auth/AVD/containers cleanup,
+exactinitialstates background packages restored. Independent reviews14 gates;
+atomic ledger8→9 сохраняет owner/group/orderedDACL/protection.
 
-Actual8: deployment 38fd2083-b0c5-48ed-a82f-79a877e4f5ba
-SUCCESS/ready200, source1333/snapshot818/packed817, package9181,
-ownPG18 runtime79 (33wire included), public508, progress7→8 70/39/24fields.
-AndroidAPI35/x86_64/16KB: installedAPK7 автоматически получил signedPCK8;
-freshAPK8 запущен с bundled8 без ещё одного PCK GET. World/hero/NPC/equipment/
-backpack и script/runtime errors0 проверены. Browser1152/390/320 и own QA
-account/auth/AVD/containers cleanup подтверждены. Три временно отключавшихся
-фоновых приложения своего AVD включены и проверены; исходно наблюдалось
-disabled-user, поэтому восстановление исходного состояния не заявляется.
-Ledger атомарно продвинут7→8 после независимых reviews.
+[Hashes, gates, evidence и ограничения](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-9/accepted-release9.json).
+[Предыдущая8](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-8/accepted-release8.json).
 
-[Итоговые hashes, gates и ограничения](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-8/accepted-release8.json).
-[Предыдущая принятая7](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-7/accepted-release7.json).
+После первой публичной выдачи signed9 whole runtime8 возвращать нельзя:
+sequence10+ либо compatible server runtime с неизменными client9 metadata/URLs/
+APK/PCK. Совместимые PCK обновляются внутри игры. Native engine/plugin/bootstrap
+потребуют APK update с системным подтверждением Android.
 
-Подписанный client8 уже мог быть получен пользователями: возврат к whole
-runtime7 запрещён. Сохранять metadata/URLs/APK/PCK8 в совместимом server
-runtime либо выпускать sequence9+. Native engine/plugin/bootstrap изменения
-потребуют отдельного APK update с системным подтверждением Android; игровые
-изменения совместимого PCK загружаются внутри игры.
-
-Бесплатный Railway Trial ограничен30days/$5, затем Free$1/month; Neon имеет
-квоты. Карта и платный тариф не включены, круглосуточная работа без квот не
-обещана. PhysicalAndroid/ARM64/iOS/store/длительнаянагрузка и backup automation
-не приняты. Известный UI baselineFAIL6/595 и исторические interrupted7
-attempts сохраняются; этот sideload pilot не объявлен магазинным релизом.
-Prepared metadata неизменяемы и остаются candidate до-выкладки; фактическая
-приёмка опубликована отдельно.
-
-Кандидат обновления: `development-20261003-9`, sequence9/minimumAPK5, мини-карта и подробная карта.
-Подготовлен и проверен; фактическая публичная приёмка9 фиксируется отдельно.
+Бесплатный hosting ограничен квотами, карта/платный тариф не подключены.
+PhysicalAndroid/ARM64/iOS/store/нагрузка/все карты/бой/FPS/тепло/батарея и
+backup automation не приняты; разные прежние HUD FAIL4/mobile FAIL6/595 сохранены.
+Prepared metadata сохраняют исходные candidate flags; фактическая приёмка
+опубликована отдельным receipt. Sideload pilot не объявлен магазинным релизом.
