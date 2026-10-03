@@ -40,3 +40,6 @@ PhysicalAndroid/ARM64/iOS/store/нагрузка/все карты/бой/FPS/т
 backup automation не приняты; разные прежние HUD FAIL4/mobile FAIL6/595 сохранены.
 Prepared metadata сохраняют исходные candidate flags; фактическая приёмка
 опубликована отдельным receipt. Sideload pilot не объявлен магазинным релизом.
+
+Кандидат обновления: `development-20261003-10`, sequence10/minimumAPK5, исправление смены цели движения.
+Подготовлен и проверен; фактическая публичная приёмка10 фиксируется отдельно.
