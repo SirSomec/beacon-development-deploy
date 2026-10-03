@@ -41,14 +41,20 @@ Railway запущен без карты: Trial ограничен 30 днями
 $1 в месяц. Neon Free тоже имеет квоты. Постоянная круглосуточная работа
 на бесплатном бюджете не гарантируется; платная подписка не включена.
 
-Подготовка 2026-10-03: source1332/client816 stable,815 packed resources,
-native16KB/signature/certificate и minimumAPK5 проверены; отдельные
-58 серверных JSON/PG/WSS проверок PASS. Перед заменой новая внехостовая
-копия живой БД восстановлена в собственной PostgreSQL27tables/4seq.
-Публичные/Android результаты7 фиксируются отдельным итоговым receipt.
-Доказательства обнаруженной UI ошибки6 сохраняются в прежнем Release.
-Физический Android, длительная нагрузка
-и автоматическое расписание резервных копий ещё не проверены/настроены.
+Приёмка7 завершена 2026-10-03. Один Railway deployment
+`f9376eb1-f2f6-40ed-b078-297d7c985190` SUCCESS/ready200;
+source1332/client816 stable,815 packed resources, package9175 и ownPG18
+runtime74 PASS. PublicHTTPS/WSS510 и saved progress6→7 74/38 (24fields) PASS.
+AndroidAPI35/x86_64/16KiB: прежний APK5 сам скачал signedPCK7 без
+переустановки; freshAPK7 запустился из bundled7 без нового PCK GET.
+В обеих фазах login/world/equipment/backpack PASS, script/runtime errors0.
+Browser1152/390/320 проверен; own backend QA/auth/AVD/containers очищены.
+Private ledger продвинут5→7 после независимых reviews.
+[Итоговые hashes, scoped checks и ограничения](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-7/accepted-release7.json).
+
+Доказательства исторической UI ошибки6 и ранних interrupted Android7
+попыток сохраняются. Физический Android/ARM64/iOS/store, длительная
+нагрузка и автоматическое расписание backup не приняты этой проверкой.
 
 Подготовленные metadata в Release-архиве остаются неизменяемыми и отражают
 состояние до выкладки. Итоговые доказательства deployment сохранены отдельно.
