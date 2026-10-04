@@ -46,3 +46,7 @@ Prepared metadata сохраняют исходные candidate flags; факт�
 
 Публичная приёмка10 завершена 2026-10-03T21:13:24.754447+00:00: исправление смены цели движения; installedAPK9→signedPCK10/freshAPK10, progress9→10, oneSUCCESS/ready200.
 [Приёмка и точные SHA](https://github.com/SirSomec/beacon-development-deploy/releases/download/development-20261003-10/accepted-release10.json). MinimumAPK5/protocol4/keys/DB сохранены. ЭмуляторAPI35/x86_64/16KB; physical/iOS/store отдельно.
+
+Кандидат обновления: `storage-20261004-11-local-v2`, sequence11/minimumAPK5, очистка старых обновлений и меньший игровой пакет.
+Подготовлен и проверен; фактическая публичная приёмка11 фиксируется отдельно.
+После первой публичной выдачи signed11 полный runtime10 и ниже нельзя возвращать: только совместимый сервер с прежними байтами/URL/metadata клиента11 либо forward sequence12+.
